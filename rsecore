@@ -27,7 +27,7 @@ SYSLOGCONF=/etc/syslog-ng/conf.d
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 RSPATH=$(pwd)
-bid=00000001
+bid=00000002
 
 #Banner
 function banner() {
@@ -423,16 +423,16 @@ function upgrade() {
     check_file $RSDEST/rsecore
     echo "Starting upgrade ..."
     echo "Download installation ..."
-    git clone --branch master https://github.com/tslenter/RSECORE.git $RSTMP/rs
+    git clone --branch main https://github.com/tslenter/RSECORE $RSTMP/RSECORE
     echo "Check if download is successfull ..."
-    if [ -d "$RSTMP/rs" ]; then
+    if [ -d "$RSTMP/RSECORE" ]; then
          echo "Continue installation ..."
     else
          echo "Clone not successfull ..."
          exit
     fi
-    cp -rf $RSTMP/rs/* $RSDEST
-    rm -rf $RSTMP/rs
+    cp -rf $RSTMP/RSECORE/* $RSDEST
+    rm -rf $RSTMP/RSECORE
     version
     echo "Start update ..."
     echo "Deploying application for CLI logging ..."
