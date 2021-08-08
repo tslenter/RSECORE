@@ -27,7 +27,7 @@ SYSLOGCONF=/etc/syslog-ng/conf.d
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 RSPATH=$(pwd)
-bid=00000002
+bid=00000003
 
 #Banner
 function banner() {
@@ -432,6 +432,7 @@ function upgrade() {
          exit
     fi
     cp -rf $RSTMP/RSECORE/* $RSDEST
+    cp -rf $RSTMP/RSECORE/rsecore $RSDEST/rsbid
     rm -rf $RSTMP/RSECORE
     version
     echo "Start update ..."
