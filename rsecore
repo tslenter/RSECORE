@@ -27,6 +27,7 @@ SYSLOGCONF=/etc/syslog-ng/conf.d
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 RSPATH=$(pwd)
+APAPATH=/var/www/html
 
 #Banner
 function banner() {
@@ -356,11 +357,11 @@ function elasticconfig() {
 
 #Elastic only removal
 function precheckremove() {
-   if [ -e "$APACONFIG/rse/index.php" ]; then
+   if [ -e "$APAPATH/rse/index.php" ]; then
        echo "RSC web is installed please remove this first ..."
    elif [ -e $APACONFIG/rsx-apache.conf ]; then
        echo "RSX web is installed please remove this first ..."
-   elif [ -e "$APACONFIG/rse/index.php" ]; then
+   elif [ -e "$APAPATH/rse/index.php" ]; then
        echo "RSE web is installed please remove this first ..."
    else
        guinotinstalled
