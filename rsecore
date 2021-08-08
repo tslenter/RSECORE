@@ -285,6 +285,9 @@ function elasticinstall() {
     check_file $APACONFIG/eonly-apache.conf
     a2ensite eonly-apache
     a2dissite 000-default
+    echo "Remove old port.conf to disable port 80 ..."
+    rm /etc/apache2/ports.conf
+    touch /etc/apache2/ports.conf
 #Load services
     echo "Reload apache services ..."
     service apache2 restart
