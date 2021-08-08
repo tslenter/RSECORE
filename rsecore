@@ -27,7 +27,7 @@ SYSLOGCONF=/etc/syslog-ng/conf.d
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 RSPATH=$(pwd)
-bid=00000003
+bid=00000004
 
 #Banner
 function banner() {
