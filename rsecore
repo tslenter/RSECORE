@@ -27,7 +27,6 @@ SYSLOGCONF=/etc/syslog-ng/conf.d
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 RSPATH=$(pwd)
-bid=00000004
 
 #Banner
 function banner() {
@@ -50,30 +49,6 @@ if ! [ $(id -u) = 0 ]; then
     echo ""
     exit 1
 fi
-
-#Check build
-function version() {
-    if [ -e "$RSDEST/rsbid" ]; then
-        fbid="$(sed -n -e '/bid/ s/.*\= *//p' $RSDEST/rsbid | head -n 1)"
-        if [ -z ${fbid} ];
-        then
-            echo "Upgrade variable not found ..."
-	    echo "${fbid}"
-        else
-            echo "Build ${fbid} found ..."
-            if [ ${fbid} -le $bid ];
-            then
-                echo "This upgrade is not allowed ..."
-                exit
-            else
-                echo "Upgrade detected ..."
-            fi
-        fi
-    else
-        echo "File: rsecore not found, is rsecore installed ..."
-        exit
-    fi
-}
 
 #Functions to check files, packages ...
 function check_package() {
@@ -459,7 +434,6 @@ function upgrade() {
     cp -rf $RSTMP/RSECORE/* $RSDEST
     cp -rf $RSTMP/RSECORE/rsecore $RSDEST/rsbid
     rm -rf $RSTMP/RSECORE
-    version
     echo "Start update ..."
     echo "Deploying application for CLI logging ..."
     rseviewinstall
