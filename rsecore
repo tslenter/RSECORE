@@ -664,7 +664,7 @@ clear
 banner
 #Menu
 PS3='Please enter your choice: '
-options=("Core installation" "Core removal" "Core upgrade" "Activate firewall" "Disable firewall" "Add local syslog to Remote Syslog core" "Remove local syslog to Remote Syslog core" "Quit")
+options=("Core installation" "Core removal" "Core upgrade" "Activate firewall" "Disable firewall" "Add local syslog to RS core" "Remove local syslog from RS core" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -712,7 +712,7 @@ do
             quit
             exit
     ;;
-        "Add local syslog to Remote Syslog core")
+        "Add local syslog to RS core")
             clear
             banner
             distocheck
@@ -720,7 +720,7 @@ do
             quit
             exit
     ;;
-        "Remove local syslog to Remote Syslog core")
+        "Remove local syslog from RS core")
             clear
             banner
             distocheck
