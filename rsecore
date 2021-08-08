@@ -160,7 +160,7 @@ function rseviewinstall() {
     cd $RSTMP/rseview_git/
     chmod +x $RSTMP/rseview_git/rseinstaller
     $RSTMP/rseview_git/rseinstaller
-    cd $RSTMP
+    cd $RSPATH
 }
 
 #Install rseview
@@ -182,7 +182,7 @@ function rseviewremove() {
     cd $RSTMP/rseview_git/
     chmod +x $RSTMP/rseview_git/rseremover
     $RSTMP/rseview_git/rseremover
-    cd $RSTMP
+    cd $RSPATH
 }
 
 #Install rseuser
