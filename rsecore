@@ -436,9 +436,7 @@ function upgrade() {
     version
     echo "Start update ..."
     echo "Deploying application for CLI logging ..."
-    cp -rf $RSDEST/rseview $RSBIN/rseview
-    echo "Set permissions for CLI application ..."
-    chmod +x $RSBIN/rseview
+    rseviewinstall
     echo "Deploying user management ..."
     cp -rf $RSDEST/rseuser $RSBIN/rseuser
     echo "Set permissions for user management ..."
@@ -457,6 +455,8 @@ function upgrade() {
     service syslog-ng restart
     echo "Set new default Apache configuration in $SYSLOGCONF/ ..."
     cp -rf $RSDEST/config/eonly-apache.conf $APACONFIG/eonly-apache.conf
+    echo "Restart apache ..."
+    service apache2 restart
 }
 
 function debvarcheck() {
