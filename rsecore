@@ -356,11 +356,11 @@ function elasticconfig() {
 
 #Elastic only removal
 function precheckremove() {
-   if [ -e "$APAPATH/rse/index.php" ]; then
+   if [ -f "$APAPATH/rsc/index.php" ]; then
        echo "RSC web is installed please remove this first ..."
-   elif [ -e $APACONFIG/rsx-apache.conf ]; then
+   elif [ -f $APACONFIG/rsx-apache.conf ]; then
        echo "RSX web is installed please remove this first ..."
-   elif [ -e "$APAPATH/rse/index.php" ]; then
+   elif [ -f "$APAPATH/rse/index.php" ]; then
        echo "RSE web is installed please remove this first ..."
    else
        guinotinstalled
