@@ -150,7 +150,7 @@ function rseviewinstall() {
     else
          echo "No directory found ..."
     fi
-    git clone https://github.com/tslenter/rseview $RSTMP/rseview_git
+    git clone https://github.com/tslenter/RSEVIEW $RSTMP/rseview_git
     if [ -d "$RSTMP/rseview_git" ]; then
          echo "Continue installation ..."
     else
@@ -160,6 +160,28 @@ function rseviewinstall() {
     cd $RSTMP/rseview_git/
     chmod +x $RSTMP/rseview_git/rseinstaller
     $RSTMP/rseview_git/rseinstaller
+    cd $RSTMP
+}
+
+#Install rseview
+function rseviewremove() {
+    echo "Auto remove ..."
+    if [ -d "$RSTMP/rseview_git" ]; then
+         echo "Clearing directory ..."
+         rm -rf $RSTMP/rseview_git
+    else
+         echo "No directory found ..."
+    fi
+    git clone https://github.com/tslenter/RSEVIEW $RSTMP/rseview_git
+    if [ -d "$RSTMP/rseview_git" ]; then
+         echo "Continue installation ..."
+    else
+         echo "Clone not successfull ..."
+         exit
+    fi
+    cd $RSTMP/rseview_git/
+    chmod +x $RSTMP/rseview_git/rseremover
+    $RSTMP/rseview_git/rseremover
     cd $RSTMP
 }
 
@@ -407,7 +429,7 @@ function coreremove() {
     apt -y autoremove
     apt -y install rsyslog
     echo "Remove application for CLI logging ..."
-    rm -rf $RSBIN/rseview
+    rseviewremove
     echo "Remove $RSDEST"
     rm -rf $RSDEST
     echo "Remove user management ..."
