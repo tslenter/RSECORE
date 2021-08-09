@@ -104,7 +104,7 @@ function rseinstallpackages() {
     echo "Update installer cache ..."
     if apt-add-repository multiverse > /dev/null 2>&1 ; then
         printf 'Multiverse command succeeded\n'
-        apt-add-repository multiverse
+        apt-add-repository multiverse -y
     else
         printf 'Multiverse not found ...\n'
     fi
