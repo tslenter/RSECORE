@@ -310,41 +310,43 @@ function elasticconfig() {
 
 	urlstatus="$(curl -XGET http://localhost:9200/_ilm/status -I | egrep 200)"
 	if [[ $urlstatus =~ "200" ]]; then
-	echo "Elasticsearch service is running ..."
-	echo "Send test message ..."
-	rseview -t
-	echo "Enable default lifecycle to RSE index ..."
-	curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/_ilm/policy/rs-policy -d '
-	{
-		"policy": {
-			"phases": {
-				"hot": {
-					"min_age": "0ms",
-					"actions": {
-						"rollover": {
-							"max_primary_shard_size": "5gb",
-							"max_age": "365d"
+		echo "Elasticsearch service is running ..."
+		echo "Send test message ..."
+		rseview -t
+		echo "Enable default lifecycle to RSE index ..."
+		curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/_ilm/policy/rs-policy -d '
+		{
+			"policy": {
+				"phases": {
+					"hot": {
+						"min_age": "0ms",
+						"actions": {
+							"rollover": {
+								"max_primary_shard_size": "5gb",
+								"max_age": "365d"
+							}
 						}
-					}
-				},
-				"delete": {
-					"min_age": "365d",
-					"actions": {
-						"delete": {
-							"delete_searchable_snapshot": true
+					},
+					"delete": {
+						"min_age": "365d",
+						"actions": {
+							"delete": {
+								"delete_searchable_snapshot": true
+							}
 						}
 					}
 				}
 			}
-		}
-	}'
+		}'
 
-	curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/rsx-syslog*/_settings -d '
+	curl -XPUT --header 'Content-Type: application/json' http://127.0.0.1:9200/_template/rs-syslog -H 'Content-Type:application/json' -d '
 	{
-		"index": {
-			"lifecycle": {
-				"name": "rs-policy"
-			}
+		"template":"rsx-syslog*",
+		"settings": {
+		"number_of_replicas": 1,
+		"number_of_shards": 1,
+		"index.lifecycle.name": "rs-policy",
+		"index.lifecycle.rollover_alias": "rs-syslog"
 		}
 	}'
         echo ""
