@@ -21,7 +21,6 @@
 #E-mail: info@remotesyslog.com
 
 echo "Installer copy ..."
-RSDEST=/opt/RSCORE
+RSDEST=/opt/RSECORE
 RSBIN=/usr/bin
-cp -rf $RSDEST/rscore $RSDEST/rsbid
 echo "Continue install ..."
