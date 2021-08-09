@@ -102,7 +102,7 @@ function rseinstallpackages() {
     echo "Notice: This installation is tested for Ubuntu Server 20.04 LTS and Debian 10.x ..."
     echo "Starting installation ..."
     echo "Update installer cache ..."
-    if apt-add-repository multiverse > /dev/null 2>&1 ; then
+    if apt-add-repository multiverse -y > /dev/null 2>&1 ; then
         printf 'Multiverse command succeeded\n'
         apt-add-repository multiverse -y
     else
