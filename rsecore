@@ -339,7 +339,7 @@ function elasticconfig() {
 			}
 		}'
 
-	curl -XPUT --header 'Content-Type: application/json' http://127.0.0.1:9200/_template/rs-syslog -H 'Content-Type:application/json' -d '
+	curl -XPUT --header 'Content-Type: application/json' http://127.0.0.1:9200/_template/rs-syslog -d '
 	{
 		"template":"rsx-syslog*",
 		"settings": {
@@ -349,7 +349,10 @@ function elasticconfig() {
 		"index.lifecycle.rollover_alias": "rs-syslog"
 		}
 	}'
+        curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog* | jq
         echo ""
+	echo "Send test message ..."
+	rseview -t
         echo "Done ..."
     else
         echo "Elasticsearch not in time activated? Use CLI to setup the lifecycle ..."
