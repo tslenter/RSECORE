@@ -349,7 +349,7 @@ function elasticconfig() {
 		"index.lifecycle.rollover_alias": "rs-syslog"
 		}
 	}'
-        curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog* | jq
+        curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog*
         echo ""
 	echo "Send test message ..."
 	rseview -t
