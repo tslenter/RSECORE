@@ -574,7 +574,11 @@ function distocheck() {
         echo "Ubuntu found ..."
         ubntrepofix
         echo "Done ..."
-    else
+    elif [[ $drel =~ "hirsute" ]]; then
+        echo "Ubuntu found ..."
+        ubntrepofix
+        echo "Done ..."
+     else
         echo "No distro detected ..."
         exit
     fi
