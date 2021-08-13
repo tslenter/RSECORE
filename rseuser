@@ -65,5 +65,5 @@ elif [ "$1" != '' ] && [ "$2" == 'rm' ]; then
                 esac
         done
 else
-        echo "Please use the command as: rsuser <username> <rm or add> <web-only>"
+        echo "Please use the command as: rseuser <username> <rm or add> <web-only>"
 fi
