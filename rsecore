@@ -241,6 +241,7 @@ function elasticinstall() {
     echo "Increase start-up time to 360 seconds ..."
     mkdir /etc/systemd/system/elasticsearch.service.d
     echo -e "[Service]\nTimeoutStartSec=360" | sudo tee /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
+    systemctl daemon-reload
     echo "Activate start/reload configuration ..."
     service elasticsearch start
     service syslog-ng restart
