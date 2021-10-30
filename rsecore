@@ -238,6 +238,9 @@ function elasticinstall() {
     echo "Activate startup log configuration ..."
     systemctl enable elasticsearch
 #Reload services
+    echo "Increase start-up time to 360 seconds ..."
+    mkdir /etc/systemd/system/elasticsearch.service.d
+    echo -e "[Service]\nTimeoutStartSec=360" | sudo tee /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
     echo "Activate start/reload configuration ..."
     service elasticsearch start
     service syslog-ng restart
@@ -388,6 +391,7 @@ function guinotinstalled() {
     echo "Remove config ..."
     rm -rf /etc/apt/sources.list.d/elastic-7.x.list
     rm -rf /etc/elasticsearch/elasticsearch.yml
+    rm -rf /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
     echo "Remove packages ..."
     apt -y purge elasticsearch liblog4j2-java libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php build-essential -y
     apt -y install syslog-ng
