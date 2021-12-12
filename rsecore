@@ -233,7 +233,7 @@ function elasticinstall() {
         echo "Write elastic config ..."
         echo "cluster.name: rsx" >> /etc/elasticsearch/elasticsearch.yml
         echo "node.name: ${HOSTNAME}" >> /etc/elasticsearch/elasticsearch.yml
-	echo "indices.breaker.fielddata.limit: 80%" /etc/elasticsearch/elasticsearch.yml
+	echo "indices.breaker.fielddata.limit: 80%" >> /etc/elasticsearch/elasticsearch.yml
     fi
 #Activate service on boot
     echo "Activate startup log configuration ..."
