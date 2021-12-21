@@ -323,6 +323,15 @@ function elasticconfig() {
 		{
 			"policy": {
 				"phases": {
+					"hot": {
+						"min_age": "0ms",
+						"actions": {
+							"rollover": {
+								"max_primary_shard_size": "5gb",
+								"max_age": "75d"
+							}
+						}
+					},
 					"delete": {
 						"min_age": "75d",
 						"actions": {
@@ -334,25 +343,24 @@ function elasticconfig() {
 				}
 			}
 		}'
-
-	curl -XPUT --header 'Content-Type: application/json' http://127.0.0.1:9200/_template/rs-syslog -d '
-	{
-		"template":"rsx-syslog*",
-		"settings": {
-		"number_of_replicas": 1,
-		"number_of_shards": 1,
-		"index.lifecycle.name": "rs-policy",
-		"index.lifecycle.rollover_alias": "rs-syslog"
-		}
-	}'
-        curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog*
-        echo ""
-	echo "Send test message ..."
-	rseview -t
-        echo "Done ..."
-    else
-        echo "Elasticsearch not in time activated? Use CLI to setup the lifecycle ..."
-    fi
+		curl -XPUT --header 'Content-Type: application/json' http://127.0.0.1:9200/_template/rs-syslog -d '
+		{
+			"template":"rsx-syslog*",
+			"settings": {
+			"number_of_replicas": 1,
+			"number_of_shards": 1,
+			"index.lifecycle.name": "rs-policy",
+			"index.lifecycle.rollover_alias": "rs-syslog"
+			}
+		}'
+                curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog*
+                echo ""
+	        echo "Send test message ..."
+	        rseview -t
+                echo "Done ..."
+        else
+                echo "Elasticsearch not in time activated? Use CLI to setup the lifecycle ..."
+        fi
 }
 
 #Elastic only removal
