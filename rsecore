@@ -350,7 +350,7 @@ function elasticconfig() {
 			"number_of_replicas": 1,
 			"number_of_shards": 1,
 			"index.lifecycle.name": "rs-policy",
-			"index.lifecycle.rollover_alias": "rs-syslog"
+			"index.lifecycle.rollover_alias": "rsx-syslog"
 			}
 		}'
                 curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog*
