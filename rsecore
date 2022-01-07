@@ -183,7 +183,7 @@ function elasticinstall() {
     check_file "$RSBIN/rseinstaller"
 #Install packages
     echo "Install required packages ..."
-    apt install libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php build-essential -y
+    apt install libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php build-essential jq -y
     check_package "libapache2-mod-authnz-external"
     check_package "apache2"
     check_package "php"
@@ -194,6 +194,7 @@ function elasticinstall() {
     check_package "php-pear"
     check_package "php-dev"
     check_package "build-essential"
+    check_package "jq"
 #Load apache modules
     echo "Load modules ..."
     a2enmod proxy
