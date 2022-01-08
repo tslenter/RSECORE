@@ -347,19 +347,19 @@ function elasticconfig() {
 		}'
 		curl -XPUT --header 'Content-Type: application/json' http://127.0.0.1:9200/_template/rs-syslog -d '
 		{
-			"template":"rsx-syslog*",
+			"template":"rse-syslog*",
 			"settings": {
 			"number_of_replicas": 1,
 			"number_of_shards": 1,
 			"index.lifecycle.name": "rs-policy",
-			"index.lifecycle.rollover_alias": "rsx-syslog"
+			"index.lifecycle.rollover_alias": "rse-syslog"
 			}
 		}'
-                curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog*
-                curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/rsx-syslog-ng-000001?pretty -d '
+                curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rse-syslog*
+                curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/rse-syslog-ng-000001?pretty -d '
                 {
                        "aliases": {
-                           "rsx-syslog":{
+                           "rse-syslog":{
                                "is_write_index": true
                            }
                        }
