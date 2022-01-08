@@ -227,12 +227,12 @@ function elasticinstall() {
     echo "Update syslog-ng with RSE config ..."
     cp $RSDEST/config/97EL-rs.conf $SYSLOGCONF/97EL-rs.conf
 #RSE elastic config
-    elc="$(cat /etc/elasticsearch/elasticsearch.yml | grep cluster.name:.rsx | head -n 1)"
-    if [[ $elc == *"cluster.name: rsx"* ]]; then
+    elc="$(cat /etc/elasticsearch/elasticsearch.yml | grep cluster.name:.rsecore | head -n 1)"
+    if [[ $elc == *"cluster.name: rsecore"* ]]; then
         echo "Config already written ..."
     else
         echo "Write elastic config ..."
-        echo "cluster.name: rsx" >> /etc/elasticsearch/elasticsearch.yml
+        echo "cluster.name: rsecore" >> /etc/elasticsearch/elasticsearch.yml
         echo "node.name: ${HOSTNAME}" >> /etc/elasticsearch/elasticsearch.yml
 	echo "indices.breaker.fielddata.limit: 80%" >> /etc/elasticsearch/elasticsearch.yml
 	echo "discovery.type: single-node" >> /etc/elasticsearch/elasticsearch.yml
