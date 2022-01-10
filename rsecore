@@ -664,6 +664,14 @@ function checkinstallationcore() {
     mod_activ $SYSLOGCONF/99-remote-local.conf
 }
 
+#Elastic cluster setup
+function clustersetup() {
+    echo "Check if core is installed ..."
+    check_file $RSBIN/rseview
+    chmod +x $RSDEST/cluster/cluster_in
+    $RSDEST/cluster/cluster_in
+}
+
 #Environment setup
 clear
 banner
@@ -688,7 +696,7 @@ clear
 banner
 #Menu
 PS3='Please enter your choice: '
-options=("Core installation" "Core removal" "Core upgrade" "Activate firewall" "Disable firewall" "Add local syslog to RS core" "Remove local syslog from RS core" "Quit")
+options=("Core installation" "Core removal" "Core upgrade" "Activate firewall" "Disable firewall" "Add local syslog to RS core" "Remove local syslog from RS core" "RSE Cluster setup" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -752,7 +760,14 @@ do
             quit
             exit
     ;;
-        "Quit")
+       "RSE Cluster setup")
+            clear
+            banner
+            distocheck
+            clustersetup
+            exit
+    ;;
+       "Quit")
             break
     ;;
         *) echo "Invalid option $REPLY ..." ;;
