@@ -1,7 +1,7 @@
 ###################
 #MASTER NODE
 #give your cluster a name.
-cluster.name: rsx
+cluster.name: rsecore
 
 #give your nodes a name (change node number from node to node).
 node.name: ${HOSTNAME}
