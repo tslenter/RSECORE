@@ -48,8 +48,8 @@ function display_banner() {
     echo "#Remote Syslog cluster installer                 #"
     echo "#More information: https://www.remotesyslog.com  #"
     echo "#Remote Syslog installation                      #"
-    echo "#Version: RSX 0.1                                #"
-    echo "#Donations: https://github.com/tslenter/RSX-RSC  #"
+    echo "#Version: RSE 0.1                                #"
+    echo "#Donations: https://github.com/tslenter/RSECORE  #"
     echo "##################################################"
     echo "Information: Only tested with RSX config."
     echo "Information: Extra data nodes will be cleared from all data."
@@ -58,7 +58,7 @@ function display_banner() {
 
 #Set global var
 function gparameter() {
-    RSDEST=/opt/RS/cluster
+    RSDEST=/opt/RSECORE/cluster
 }
 
 # Set var
