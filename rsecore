@@ -355,6 +355,14 @@ function elasticconfig() {
 			}
 		}'
                 curl -XDELETE --header "Content-Type: application/json" http://localhost:9200/rsx-syslog*
+                curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/rsx-syslog-ng-000001?pretty -d '
+                {
+                       "aliases": {
+                           "rsx-syslog":{
+                               "is_write_index": true
+                           }
+                       }
+                }'
                 echo ""
 	        echo "Send test message ..."
 	        rseview -t
