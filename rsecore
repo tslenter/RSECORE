@@ -101,7 +101,7 @@ function rseinstallpackages() {
     echo "Check if Remote Syslog master installer is installed ..."
     check_file $RSBIN/rseinstaller
     echo "Check if Remote Syslog Core is installed ..."
-    check_file_reverse $RSDEST/rsecore
+    check_file_reverse $APACONFIG/eonly-apache.conf
     echo "Notice: This installation is tested for Ubuntu Server 20.04 LTS and Debian 10.x ..."
     echo "Starting installation ..."
     echo "Update installer cache ..."
