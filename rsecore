@@ -580,6 +580,8 @@ function distocheck() {
     echo "Check release ..."
     drel="$(lsb_release -a | egrep 'Codename:')"
     echo "$drel found ..."
+    if [[ $drel =~ "bookworm" ]]; then
+        debvarcheck
     if [[ $drel =~ "buster" ]]; then
         debvarcheck
     elif [[ $drel =~ "sid" ]]; then
