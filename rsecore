@@ -246,7 +246,7 @@ function elasticinstall() {
 #Reload services
     echo "Increase start-up time to 360 seconds ..."
     mkdir /etc/systemd/system/elasticsearch.service.d
-    echo -e "[Service]\nTimeoutStartSec=360" | sudo tee /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
+    echo -e "[Service]\nTimeoutStartSec=360" | tee /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
     systemctl daemon-reload
     echo "Activate start/reload configuration ..."
     service elasticsearch start
@@ -536,7 +536,7 @@ function ubntrepofix() {
     if [[ $drel =~ "aarch64" ]]; then
         echo "ARM detected ..."
         echo "Apply fix ..."
-        sudo echo "" > /etc/apt/sources.list.d/syslog-ng.list
+        echo "" > /etc/apt/sources.list.d/syslog-ng.list
     else
         echo "Continue ..."
     fi
