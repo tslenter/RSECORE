@@ -598,6 +598,10 @@ function distocheck() {
         echo "Ubuntu found ..."
         ubntrepofix
         echo "Done ..."
+    elif [[ $drel =~ "jammy" ]]; then
+        echo "Ubuntu found ..."
+        ubntrepofix
+        echo "Done ..."
      else
         echo "No distro detected ..."
         exit
