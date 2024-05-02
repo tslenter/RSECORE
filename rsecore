@@ -578,6 +578,15 @@ function ubntrepofix() {
 #If upgrade is triggered
         apt install syslog-ng -y
         check_package "syslog-ng"
+    elif [[ $drel =~ "noble" ]]; then
+        touch /etc/apt/sources.list.d/syslog-ng.list
+        wget -qO - https://cloud.remotesyslog.com/xUbuntu_20.04/Release.key | /usr/bin/apt-key add -
+        echo deb https://cloud.remotesyslog.com/xUbuntu_20.04 ./ > /etc/apt/sources.list.d/syslog-ng.list
+        apt update
+        apt auto-remove -y
+#If upgrade is triggered
+        apt install syslog-ng -y
+        check_package "syslog-ng"
     else
         echo "No distro found ..."
         exit
