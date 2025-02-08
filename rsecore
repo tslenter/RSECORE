@@ -217,10 +217,13 @@ function elasticinstall() {
     if [ -e "/etc/apt/sources.list.d/elastic-7.x.list" ]; then
         echo "Nothing to do ..."
     else
-        wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+        #wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+        wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
         apt-get install apt-transport-https -y
-        echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list
-        echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list
+        echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+        echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+        #echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list
+        #echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list
     fi
     apt update && apt install elasticsearch liblog4j2-java -y
     check_package "elasticsearch"
