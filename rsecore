@@ -603,7 +603,7 @@ function distocheck() {
     echo "$drel found ..."
     if [[ $drel =~ "trixie" ]]; then
         debvarcheck
-    if [[ $drel =~ "bookworm" ]]; then
+    elif [[ $drel =~ "bookworm" ]]; then
         debvarcheck
     elif [[ $drel =~ "buster" ]]; then
         debvarcheck
